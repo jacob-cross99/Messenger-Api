@@ -1,0 +1,23 @@
+{
+  "name": "messenger-api",
+  "version": "1.0.0",
+  "description": "The fully-functional Messenger API",
+  "main": "dist/index.js",
+  "repository": "https://github.com/jacob-cross99/Messenger-Api",
+  "author": "Jacob Cross <jacob.m.cross1999@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.0"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "nodemon": "^1.12.1"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "test": "ava tests/*.js",
+    "build": "babel src -d dist"
+  }
+}
