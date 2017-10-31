@@ -420,10 +420,13 @@ var MessengerApi = function (_EventEmitter) {
     value: function _handleMessage(senderId, pageId, message) {
       var attachments = message.attachments,
           text = message.text,
-          nlp = message.nlp;
+          nlp = message.nlp,
+          quick_reply = message.quick_reply;
 
 
       if (attachments && attachments.length !== 0) return this.emit('attachments', senderId, pageId, attachments);
+
+      if (quick_reply && quick_reply.payload) return this.emit('postback', senderId, pageId, quick_reply.payload);
 
       this.emit('message', senderId, pageId, text, nlp);
     }

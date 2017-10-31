@@ -339,10 +339,13 @@ export default class MessengerApi extends EventEmitter {
     .on('message', (senderId, pageId, text, nlp: { entities: { } } ))
   */
   _handleMessage(senderId, pageId, message) {
-    const { attachments, text, nlp } = message;
+    const { attachments, text, nlp, quick_reply } = message;
 
     if(attachments && attachments.length !== 0)
       return this.emit('attachments', senderId, pageId, attachments);
+
+    if(quick_reply && quick_reply.payload)
+      return this.emit('postback', senderId, pageId, quick_reply.payload);
 
     this.emit('message', senderId, pageId, text, nlp);
   }
